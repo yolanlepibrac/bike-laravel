@@ -15,8 +15,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/hello', function () {
     return "hello world";
+});
+
+Route::get('article/{n}', function($n) {
+    return 'Je suis la page ' . $n . ' !';
+})->where('n', '[1-3]');
+
+Route::get('test', function () {
+    return response('un test', 200)->header('Content-Type', 'text/plain');
 });
