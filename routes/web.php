@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,8 @@ Route::get('article/{n}', function($n) {
 
 Route::get('test', function () {
     return response('un test', 200)->header('Content-Type', 'text/plain');
+});
+
+Route::get('users', function () {
+    return DB::table('users')->get();
 });
