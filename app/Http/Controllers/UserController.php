@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     /**
      * Show a list of all of the application's users.
@@ -16,6 +17,13 @@ class UsersController extends Controller
     {
         $users = DB::table('users')->get();
 
-        return view('user.index', ['users' => $users]);
+        return ['users' => $users];
+    }
+
+    public function getUserById($id)
+    {
+        $users = DB::table('users')->get();
+
+        return ['user' => User::findOrFail($id)];
     }
 }

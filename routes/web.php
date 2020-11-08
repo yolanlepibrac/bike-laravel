@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,10 @@ Route::get('test', function () {
     return response('un test', 200)->header('Content-Type', 'text/plain');
 });
 
-Route::get('users', function () {
+Route::get('users/all', function () {
     return DB::table('users')->get();
 });
+
+Route::get('users', [UserController::class, 'index']);
+
+Route::get('user/{id}', [UserController::class, 'getUserById']);
